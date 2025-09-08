@@ -190,8 +190,16 @@ p{
     font-size: 5rem;
 }
 
+#cerrar-caja-lista-musica{
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+}
+
 .caja-lista-musica{
     position: fixed;
+    display: flex;
+    flex-direction: row;
     width: max-content;
     /* inset: 0 0 0 auto; */
     top: 0;
@@ -202,7 +210,8 @@ p{
 
     /* right: -100%; */
 
-    transform: translateX(100%);
+    transform: translateX(100%) scale(0.9);
+    transition:  transform 0.4s ease;
     /* clip-path: inset(0 0 0 100%);
     transition: clip-path 0.4s ease; */
 
@@ -213,6 +222,14 @@ p{
     overflow-y: auto;
     z-index: 500;
 }
+
+.caja-lista-musica-mostrar{
+    transform: translateX(0) scale(1);
+}
+
+/* .caja-lista-musica-mostrar{
+    transform: translateX(0) scale(1); 
+} */
 
 /* .caja-lista-musica{
     clip-path: inset(0 0 0 0);

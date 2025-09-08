@@ -1,5 +1,20 @@
 // const contenedor_de_subcajas_anim = document.querySelector('.caja-de-las-subcajas1');
 const contenedor_mayor = document.querySelectorAll('.caja-de-las-subcajas1')
+const lista_musica_de_todo = document.getElementById('lista-musica-de-todo');
+const caja_lista_musica = document.getElementById('caja-lista-musica')
+const boton_cerrar_caja_lista_musica = document.getElementById('cerrar-caja-lista-musica');
+
+console.log(caja_lista_musica);
+
+lista_musica_de_todo.addEventListener('click', ()=>{
+    // caja_lista_musica.style.transform = "translateX(0)";
+    caja_lista_musica.classList.add('caja-lista-musica-mostrar');
+});
+
+boton_cerrar_caja_lista_musica.addEventListener('click', ()=>{
+    caja_lista_musica.classList.remove('caja-lista-musica-mostrar');
+})
+
 
 const musicas_rock = [1, 2];
 const musicas_romantic = [1, 2, 3, 4, 5];
@@ -7,6 +22,8 @@ const musicas_top = [1, 2, 3, 4
 ];
 
 const colors = ['red', 'blue', 'green', 'yellow', 'blueviolet', 'orange']
+
+
 
 contenedor_mayor.forEach((actual, indice)=>{
     if (indice === 0){
