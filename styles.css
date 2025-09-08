@@ -2,14 +2,16 @@ html,
 body{
     margin: 0;
     /* min-width: 100vw; */
-    /* height: 100%; */
-
+    height: 100%;
+    /* max-width: 100vw; */
+    /* overflow: hidden; */
+    overflow-x: hidden;
 }
 
 body{
     box-sizing: border-box;
     /* min-height: 100vh; */
-    height: 100vh;
+    /* height: 100%; */
     display: flex;
     flex-direction: row;
     gap: 5%;
@@ -144,6 +146,7 @@ p{
 
 .caja-2{
     box-sizing: border-box;
+    position: relative;
     flex-direction: column;
     display: flex;
     gap: 10px;
@@ -185,6 +188,50 @@ p{
 
 .cosas-sobre-el-web h1{
     font-size: 5rem;
+}
+
+.caja-lista-musica{
+    position: fixed;
+    width: max-content;
+    /* inset: 0 0 0 auto; */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: fit-content;
+    text-align: center;
+
+    /* right: -100%; */
+
+    transform: translateX(100%);
+    /* clip-path: inset(0 0 0 100%);
+    transition: clip-path 0.4s ease; */
+
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+
+    overflow-y: auto;
+    z-index: 500;
+}
+
+/* .caja-lista-musica{
+    clip-path: inset(0 0 0 0);
+} */
+
+.lista-ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 0;
+}
+
+.lista-ul li{
+    display: block;
+    background-color: blue;
+
+    cursor: pointer;
 }
 
 .caja-lista{
