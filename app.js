@@ -1,214 +1,277 @@
-// !Caja dónde se reproduce
-const caja_padre = document.querySelector('.caja-padre-reproducir');
-
-const titulo = document.getElementById('Titulo-cancion');
-const portada_principal = document.getElementById('portada-principal');
-const artista = document.getElementById('artista-nombre');
-const musica_reproducir = document.getElementById('musica-reproducir');
-const progreso_barra = document.querySelector('input.progreso')
-
-// ?Parte de controles(button)
-const atras = document.querySelector('button.atras');
-const play_pausa = document.querySelector('button.play-pausa');
-const play_pausa_icon = document.getElementById('play-icon');
-const siguiente = document.querySelector('button.siguiente');
-
-// ?Portada
-const portada_img = document.getElementById('portada-principal-img');
-
-// !Seleccionar todos los "lista-cancion"
-const contenedor_lista = document.querySelector('.caja-padre-lista-musica');
+// !Cajas animados, con su musica correspondiente:
+// const contenedor_de_subcajas_anim = document.querySelector('.caja-de-las-subcajas1');
+const contenedor_mayor = document.querySelectorAll('.caja-de-las-subcajas1')
+// ?Caja mayor de las subcajas, se usará para ver en qué caja se ha hecho click o está la selección:
+const play_list = document.querySelectorAll('.sub-caja-lista .play-list');
 
 
-const lista_canciones = [
+// !Caja desplegable, osea la lista de todas las musicas, con su nombre:
+const lista_musica_de_todo = document.getElementById('lista-musica-de-todo');
+const caja_lista_musica = document.getElementById('caja-lista-musica')
+const boton_cerrar_caja_lista_musica = document.getElementById('cerrar-caja-lista-musica');
+const contenedor_ul = document.querySelectorAll('.sub-caja-lista-musica .sub-caja-lista-musica-2');
+
+// !Etiqueta audio:
+const audio_reproductor = document.getElementById('audio_reproductor');
+
+console.log(audio_reproductor.value);
+
+
+// ?Mostrar y ocultar caja desplegable:
+lista_musica_de_todo.addEventListener('click', ()=>{
+    // caja_lista_musica.style.transform = "translateX(0)";
+    caja_lista_musica.classList.add('caja-lista-musica-mostrar');
+    lista_musica_de_todo.classList.add('oculatar_boton_lista')
+});
+
+boton_cerrar_caja_lista_musica.addEventListener('click', ()=>{
+    caja_lista_musica.classList.remove('caja-lista-musica-mostrar');
+    lista_musica_de_todo.classList.remove('oculatar_boton_lista');
+})
+
+
+// !Lista de las musicas
+const musicas_rock = [
     {
-        nombre: 'Shadow of the Days',
-        artista: 'linkin park',
-        ruta: 'music/Shadow Of The Day.mp3',
-        ruta_portada: 'img/shadow of the days.jpg'
+        nombre : 'A donde voy',
+        portada : 'img/A donde voy.jpg',
+        ruta : 'music/A dónde voy - Wuicho kun & Azul de Viena.mp3'
     },
     {
-        nombre: ' Sharks',
-        artista: 'PARIS the prince',
-        ruta: 'music/Skrahs.mp3',
-        ruta_portada: 'img/paris the prince-sharks.jpg'
-    },
-    {
-        nombre: 'R-Windows',
-        artista: 'Social Repose',
-        ruta: 'music/M & S R-Windows.mp3',
-        ruta_portada: 'img/Windows.jpg'
-    },
-    {
-        nombre: 'A dónde voy',
-        artista: ' Wuicho kun & Azul de Viena',
-        ruta: 'music/A dónde voy - Wuicho kun & Azul de Viena.mp3',
-        ruta_portada: 'img/A donde voy.jpg'
-    },
-    {
-        nombre: 'SHADOWBORN',
-        artista: 'Desconocido',
-        ruta: 'music/SHADOWBORN.mp3',
-        ruta_portada: 'img/shadowborn.webp'
-    },
-    {
-        nombre: 'Desconocido',
-        artista: 'unknown',
-        ruta: 'music/DesconocidoMusic.mp3',
-        ruta_portada: 'img/desconocido.jpg'
+        nombre : 'Desconocido',
+        portada : 'img/desconocido.jpg',
+        ruta : 'music/DesconocidoMusic.mp3'
     }
 ];
 
-let indie_cancion_actual = 0;
+const musicas_romantic = [
+    {
+        nombre : 'Sharks',
+        portada : 'img/paris the prince-sharks.jpg',
+        ruta : 'music/Skrahs.mp3'
+    },
+    {
+        nombre : 'shadow of the days',
+        portada : 'img/shadow of the days.jpg',
+        ruta : 'music/Shadow Of The Day.mp3'
+    },
+    {
+        nombre : 'shadowborn',
+        portada : 'img/shadowborn.webp',
+        ruta : 'music/SHADOWBORN.mp3'
+    }
+];
+
+const musicas_top = [
+    {
+        nombre : 'Windows',
+        portada : 'img/Windows.jpg',
+        ruta : 'music/M & S R-Windows.mp3'
+    }
+];
+
+const colors = ['red', 'blue', 'green', 'yellow', 'blueviolet', 'orange']
 
 
-lista_canciones.forEach((cancion_actual, indice) =>{
-    const div_cancion = document.createElement('div');
-    div_cancion.classList.add('lista-cancion');
 
-    const div_miniportada = document.createElement('div');
-    div_miniportada.classList.add('mini-portada');
+contenedor_mayor.forEach((actual, indice)=>{
+    if (indice === 0){
+        musicas_rock.forEach((N, indice_rock)=>{
+            let nuevo_div = document.createElement('div');
+            let img = document.createElement('img');
 
-    const img = document.createElement('img');
-    img.src = cancion_actual.ruta_portada;
+            img.src = musicas_rock[indice_rock].portada;
+            
+            nuevo_div.classList.add('track1');
 
-    const p = document.createElement('p');
-    p.textContent = cancion_actual.nombre;
+            // nuevo_div.style.backgroundImage = `url('${musicas_rock[indice_rock].portada}')`;
+            
+            nuevo_div.appendChild(img);
+            actual.appendChild(nuevo_div);
+        });
+    } else if (indice === 1){
+        musicas_romantic.forEach((N, indice_romantic)=>{
+            let nuevo_div = document.createElement('div');
+            let img = document.createElement('img');
 
-    div_miniportada.appendChild(img);
-    div_cancion.appendChild(div_miniportada);
-    div_cancion.appendChild(p);
-    contenedor_lista.appendChild(div_cancion);
-})
+            img.src = musicas_romantic[indice_romantic].portada;
 
-const elementosLista = document.querySelectorAll('.lista-cancion');
+            nuevo_div.classList.add('track1');
+            // nuevo_div.style.backgroundColor = colors[indice_romantic];
 
+            nuevo_div.appendChild(img);
+            actual.appendChild(nuevo_div);
+        });
+    } else {
+        musicas_top.forEach((N, indice_top)=>{
+            let nuevo_div = document.createElement('div');
+            let img = document.createElement('img');
 
-elementosLista.forEach((elementos, indice)=>{
+            img.src = musicas_top[indice_top].portada;
 
-    elementos.addEventListener('click', ()=>{
-        elementosLista.forEach((elemento)=>{
-            elemento.classList.remove('activa')
-        })
-        elementos.classList.add('activa')
-        indie_cancion_actual=indice;
-        actualizar_inf_cancion();
-        play_musica();
-    });
+            nuevo_div.classList.add('track1');
+            // nuevo_div.style.backgroundColor = colors[indice_top];
+
+            nuevo_div.appendChild(img);
+            actual.appendChild(nuevo_div);
+        });
+    };
 });
 
-function actualizar_inf_cancion(){
-    titulo.textContent = lista_canciones[indie_cancion_actual].nombre;
-    portada_img.src = lista_canciones[indie_cancion_actual].ruta_portada;
-    artista.textContent = lista_canciones[indie_cancion_actual].artista;
-    musica_reproducir.src = lista_canciones[indie_cancion_actual].ruta;
+// const contenedor_mayor_reset = document.querySelectorAll('.caja-de-las-subcajas1')
 
-    elementosLista.forEach((e, i)=>{ 
-        e.classList.toggle('activa', i === indie_cancion_actual)
-    });
-};
-
-// elementosLista.forEach((elemento, indice) => {
-//         let mini_portada = elemento.querySelector('.mini-portada'); 
-//         console.log(mini_portada);
-        
-//         let mini_portada_img = mini_portada.querySelector('img');
-//         let nombre = elemento.querySelector('p');
-
-//         mini_portada_img.src = lista_canciones[indice].ruta_portada;
-//         nombre.textContent = lista_canciones[indice].nombre;
-
-//     elemento.addEventListener('click', () => {
-//         indie_cancion_actual = indice;
-//         actualizar_inf_cancion();
-//         play_musica();
-//     });
+// contenedor_mayor_reset.forEach((elemento, indice)=>{
+//     if (indice == 0) {
+//         const cajas_track = elemento.querySelectorAll('div');
+//         cajas_track.forEach((element_track, indice)=>{
+//             element_track.style.backgroundImage = `url('${musicas_rock[indice].portada}')`;
+//         });
+//     };
 // });
 
+// !generando las lista de musica: desplegable
+contenedor_ul.forEach((elemento_actual, indice)=>{
+    const ul = elemento_actual.querySelector('.lista-ul');
+    
+    if (indice == 0) {
+        musicas_rock.forEach((N, indice)=>{
+            let nuevo_li = document.createElement('li');
+            nuevo_li.textContent = musicas_rock[indice].nombre;
 
-// !Funciones para reproducir:
-function play_musica(){
-    play_pausa_icon.classList.remove('bi-suit-heart')
-    play_pausa_icon.classList.add('bi-suit-heart-fill')
-    musica_reproducir.play();
-};
-function pasusar_musica(){
-    play_pausa_icon.classList.remove('bi-suit-heart-fill');
-    play_pausa_icon.classList.add('bi-suit-heart');
-    musica_reproducir.pause();
-};
+            ul.appendChild(nuevo_li);
+        });
+    } else if (indice == 1) {
+        musicas_romantic.forEach((N, indice)=>{
+            let nuevo_li = document.createElement('li');
+            nuevo_li.textContent = musicas_romantic[indice].nombre;
 
-// !Funciones para avanzar. play-pausa y siguiente:
-function siguiente_cancion(){
-    // indie_cancion_actual = indie_cancion_actual + 1;
-    // let indice_maximo = lista_canciones.length;
-
-    // if (indie_cancion_actual == indice_maximo){
-    //     indie_cancion_actual = 0;
-    // }
-
-    //      4                        4+1=> 5        4%5=> 0
-    indie_cancion_actual = (indie_cancion_actual + 1) % lista_canciones.length;
-    actualizar_inf_cancion();
-};
-function atras_cancion() {
-    //     4                                 4-1=> 3+5=> 8                 8%5=> 3
-    indie_cancion_actual = (indie_cancion_actual - 1 + lista_canciones.length) % lista_canciones.length;
-    actualizar_inf_cancion();
-};
-function reproducir_pausar(){
-    if (musica_reproducir.paused){
-        play_musica();
+            ul.appendChild(nuevo_li);
+        });
     } else{
-        pasusar_musica();
-    }
+        musicas_top.forEach((N, indice)=>{
+            let nuevo_li = document.createElement('li');
+            nuevo_li.textContent = musicas_top[indice].nombre;
+
+            ul.appendChild(nuevo_li);
+        });
+    };
+});
+
+function resetStyle(){
+    contenedor_mayor.forEach((actual)=>{
+        aplicar_estilos(actual);
+    })
+};
+
+// function indice_para_cada_musica(){
+
+// };
+
+function aplicar_estilos(contenedor){
+    const sub_cajas_track1 = contenedor.querySelectorAll('.track1');
+    
+    sub_cajas_track1.forEach((track)=>{
+        track.classList.remove('anime');
+        // track.style.transition = 'none';
+    });
+
+    void contenedor.offsetWidth;
+
+    sub_cajas_track1.forEach((t)=>{
+        t.classList.add('anime')
+        // t.style.transition = 'transform 0.4s ease, opacity 0.4s ease'
+    });
+
+    sub_cajas_track1.forEach((caja, indice)=>{
+        if (indice === 0) {
+            
+            caja.style.transform = "scale(1) translatey(0)";
+            caja.style.opacity = "1"
+            caja.style.zIndex = "30";
+        } else if (indice === 1) {
+            caja.style.transform = "scale(0.95) translatey(10px)";
+            caja.style.opacity = "1";
+            caja.style.zIndex = "20";
+        } else if (indice === 2) {
+            caja.style.transform = "scale(0.9) translatey(20px)";
+            caja.style.opacity = "1";
+            caja.style.zIndex = "10";
+        } else {
+            caja.style.transform = "scale(0.8) translatey(0)";
+            caja.style.opacity = "1";
+            caja.style.zIndex = '5';
+        };
+    });
 };
 
 
+resetStyle();
 
-// !Eventos:
-siguiente.addEventListener('click', ()=>{
-    siguiente_cancion()
-    play_musica();
+// !El primer click no va mover la caja
+let contador = [0, 0, 0];
+// let contador2 = 0;
+// let contador3 = 0;
+
+contenedor_mayor.forEach((contenedor_actual, indice)=>{
+    contenedor_actual.addEventListener('click', ()=>{
+
+        // let play_list_selec = play_list[indice];
+
+        play_list.forEach((play_list_selec, indice_actual)=>{
+            play_list_selec.classList.toggle('play-list-selecion', indice_actual == indice);
+        });
+
+        let tracks = contenedor_actual.querySelectorAll('.track1');
+        let cantidad_tracks = tracks.length;
+
+
+        // play_list_selec.classList.toggle('play-list-selecion', indice == indice);
+
+        const firs = contenedor_actual.firstElementChild;
+
+        if (contador[indice] == 1) {
+    
+            firs.style.transform = 'translateY(-150%) rotate(-10deg)';
+            firs.style.opacity = '0';
+    
+            firs.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'transform') {
+                    contenedor_actual.appendChild(firs);
+                    resetStyle(contenedor_actual);
+    
+                    firs.removeEventListener('transitionend', handler)
+                }
+            });   
+        } else {
+            firs.style.transform = 'scale(1.1)'
+
+            firs.addEventListener('transitionend', function handler2() {
+                firs.classList.remove('anime');
+
+                void firs.offsetWidth;
+
+                firs.classList.add('anime');
+
+                firs.style.transform = 'scale(1)';
+
+                // if (indice == 0) {
+                //     contador[indice] = contador[indice] + 1;
+                // } else if(indice == 1) {
+                //     contador[indice] = contador[indice] + 1;
+                // } else {
+                //     contador[indice] = contador[indice] + 1;
+                // };
+
+                contador[indice] = contador[indice] + 1;
+
+                firs.removeEventListener('transitionend', handler2)
+                // console.log('contador actual', contador+1);
+                
+            });
+        };
+
+
+    });
 });
-atras.addEventListener('click', ()=>{
-    atras_cancion();
-    play_musica();
-});
-musica_reproducir.addEventListener('loadedmetadata', ()=>{
-    progreso_barra.max = musica_reproducir.duration;
-    progreso_barra.value = musica_reproducir.currentTime;
-});
 
-play_pausa.addEventListener('click', ()=>{
-    reproducir_pausar();
-});
 
-musica_reproducir.addEventListener('timeupdate', ()=>{
-    if(!musica_reproducir.paused){
-        progreso_barra.value = musica_reproducir.currentTime;
-    };
-
-    // if(indie_cancion_actual==4 && musica_reproducir.currentTime < 5){
-    //     portada_principal.classList.add('animacion')
-    // } else{
-    //     portada_principal.classList.remove('animacion')
-    // }
-
-    // if(indie_cancion_actual==4 && (musica_reproducir.currentTime>5 && musica_reproducir.currentTime<10)){
-    //     caja_padre.classList.add('animacion2');
-    // }else{
-    //     caja_padre.classList.remove('animacion2');
-    // };
-});
-
-musica_reproducir.addEventListener('ended', ()=>{
-    siguiente_cancion();
-    play_musica();
-})
-
-progreso_barra.addEventListener('input', ()=>{
-    musica_reproducir.currentTime = progreso_barra.value;
-});
-
-actualizar_inf_cancion();
