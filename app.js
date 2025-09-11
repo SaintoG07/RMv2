@@ -14,8 +14,6 @@ const contenedor_ul = document.querySelectorAll('.sub-caja-lista-musica .sub-caj
 // !Etiqueta audio:
 const audio_reproductor = document.getElementById('audio_reproductor');
 
-console.log(audio_reproductor.value);
-
 
 // ?Mostrar y ocultar caja desplegable:
 lista_musica_de_todo.addEventListener('click', ()=>{
