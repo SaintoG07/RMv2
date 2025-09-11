@@ -6,138 +6,71 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    <title>RMv2</title>
+    <title>Music B&D</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="caja-1">
-        <div class="portada-principal-div">
-            <img src="img/shadow of the days.jpg" alt="PORTADA" id="portada-principal-img">
-        </div>
-        <h2 id="caja-1-nombre">Nombre-canción</h2>
-        <h3 id="caja-1-artista">Artista</h3>
-        <div id="controles">
-            <button class="botones" id="boton-repetir">
-                <i class="bi bi-repeat"></i>
-                <!-- <i class="bi bi-repeat-1"></i> -->
-            </button>
-            <button class="botones">
-                <i class="bi bi-skip-start-fill"></i>
-            </button>
-            <button class="botones">
-                <i class="bi bi-play-fill"></i>
-                <!-- <i class="bi bi-pause-fill"></i> -->
-            </button>
-            <button class="botones">
-                <i class="bi bi-skip-end-fill"></i>
-            </button>
-            <button class="botones" id="boton-volumen">
-                <i class="bi bi-volume-down-fill"></i>
-            </button>
-        </div>
 
-        <div class="barra-y-tiempo">
-            <p>00:00</p>
-            <input type="range" id="barra-de-progreso">
-            <p>03:48</p>
-        </div>
-    </div>
-
-
-
-    <div class="caja-2">
-        <div class="caja-2-opciones-arriba">
-            <h3>RMv2</h3>
-
-            <p id="idioma">EN</p>
-            <button>
-                <i class="bi bi-search"></i>
-            </button>
-            <button>
-                <i class="bi bi-person"></i>
-            </button>
-            <button id="lista-musica-de-todo">
-                <i class="bi bi-list"></i>
-            </button>
-        </div>
-
-        <div class="cosas-sobre-el-web">
-            <h1>
-                Play Your<br>
-                Beloved Music
-            </h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus deserunt neque praesentium rem eos, repellat aut officia inventore in accusantium. Explicabo dicta possimus repellendus cum similique impedit minima eveniet optio?</p>
-        </div>
-
-        <div class="caja-lista-musica" id="caja-lista-musica">
-            <div>
-                <button id="cerrar-caja-lista-musica"></button>
+    <div class="caja-general">
+        <!-- !Primera caja, dónde va la portoda, nombre, atras, play-pausa, seguiente, etc -->
+        <div class="caja-padre-reproducir">
+            <h1 id="Titulo-cancion">Nombre</h1>
+            <div id="portada-principal" class="animacion">
+                <img src="" id="portada-principal-img">
             </div>
-            <div>
-                <h2>Rock</h2>
-                <ul class="lista-ul">
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                </ul>
-                <h2>Romantic</h2>
-                <ul class="lista-ul">
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                </ul>
-                <h2>Top</h2>
-                <ul class="lista-ul">
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>7</li>
-                    <li>8</li>
-                    <li>9</li>
-                    <li>10</li>
-                    <li>11</li>
-                    <li>12</li>
-                    <li>13</li>
-                    <li>14</li>
-                    <li>15</li>
-                    <li>16</li>
-                    <li>17</li>
-                </ul>
+            <h2 id="artista-nombre">Artista</h2>
+            <audio id="musica-reproducir">
+                <source src="" type="audio/mp3">
+            </audio>
+            <input type="range" class="progreso">
+            <div class="controles">
+                <button class="atras">
+                    <i class="bi bi-skip-backward-fill"></i>
+                </button>
+                <button class="play-pausa">
+                    <!-- <i class="bi bi-suit-heart-fill"></i> -->
+                    <i class="bi bi-suit-heart" id="play-icon"></i>
+                </button>
+                <button class="siguiente">
+                    <i class="bi bi-skip-forward-fill"></i>
+                </button>
             </div>
         </div>
-
-        <div class="caja-lista">
-            <p>Mi playlist:</p>
-            <div class="sub-caja-lista">
-                <div class="play-list">
-                    <div class="caja-de-las-subcajas1">
-                        <!-- <div style="background-color: rgb(151, 64, 217);" class="track1"></div>
-                        <div style="background-color: green;" class="track1"></div>
-                        <div style="background-color: aqua;" class="track1"></div> -->
-                    </div>
-                    <p>Rock</p>
+    
+        <!-- !Segunda caja, lista de canciones para reproducir -->
+        <div class="caja-padre-lista-musica">
+            <!-- <div class="lista-cancion" id="primera-cancion">
+                <div class="mini-portada">
+                    <img src="">
                 </div>
-                <div class="play-list">
-                    <div class="caja-de-las-subcajas1">
-                        <!-- <div style="background-color: rgb(151, 64, 217);" class="track1"></div>
-                        <div style="background-color: green;" class="track1"></div>
-                        <div style="background-color: aqua;" class="track1"></div> -->
-                    </div>
-                    <p>Romantic</p>
-                </div>
-                <div class="play-list">
-                    <div class="caja-de-las-subcajas1">
-                        <!-- <div style="background-color: rgb(151, 64, 217);" class="track1"></div>
-                        <div style="background-color: green;" class="track1"></div>
-                        <div style="background-color: aqua;" class="track1"></div> -->
-                    </div>
-                    <p>Top</p>
-                </div>
+                <p>Nombre</p>
             </div>
+    
+            <div class="lista-cancion">
+                <div class="mini-portada">
+                    <img src="">
+                </div>
+                <p>Nombre</p>
+            </div>
+            
+            <div class="lista-cancion">
+                <div class="mini-portada">
+                    <img src="">
+                </div>
+                <p>Nombre</p>
+            </div>
+            <div class="lista-cancion">
+                <div class="mini-portada">
+                    <img src="">
+                </div>
+                <p>Nombre</p>
+            </div>
+            <div class="lista-cancion">
+                <div class="mini-portada">
+                    <img src="">
+                </div>
+                <p>Nombre</p>
+            </div> -->
         </div>
     </div>
 
