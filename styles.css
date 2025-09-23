@@ -103,6 +103,17 @@ p{
     color: white;
     background-color: transparent;
     border: none;
+
+    cursor: pointer;
+    transition: scale 1s ease;
+}
+
+.botones:active{
+    transform: scale(1.2);
+}
+
+.botones:hover{
+    scale: 1.1;
 }
 
 #boton-repetir, 

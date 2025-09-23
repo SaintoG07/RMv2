@@ -14,6 +14,18 @@ const contenedor_ul = document.querySelectorAll('.sub-caja-lista-musica .sub-caj
 // !Etiqueta audio:
 const audio_reproductor = document.getElementById('audio_reproductor');
 
+// !Caja para cotrolar las musicas, caja 1:
+const portada_principal_img = document.getElementById('portada-principal-img');
+const caja_1_nombre = document.getElementById('caja-1-nombre');
+const caja_1_artista = document.getElementById('caja-1-artista');
+
+// ?Botones en la caja 1:
+const boton_play_puasa = document.getElementById('boton_pausar_play');
+const icono_play_pausa = document.getElementById('icono-play_puasa');
+
+const boton_atras = document.getElementById('boton-atras');
+const boton_siguiente = document.getElementById('boton-siguiente');
+
 
 // ?Mostrar y ocultar caja desplegable:
 lista_musica_de_todo.addEventListener('click', ()=>{
@@ -68,8 +80,42 @@ const musicas_top = [
     }
 ];
 
+const todas_las_musicas = [musicas_rock, musicas_romantic, musicas_top];
+
+
 const colors = ['red', 'blue', 'green', 'yellow', 'blueviolet', 'orange']
 
+
+// !Funciones para actualizar inf, play-pausa, etc:
+function actualizar_inf(genero_a_reproducir_f_s, caja_musica_s){
+    portada_principal_img.src = genero_a_reproducir_f_s[caja_musica_s].portada;
+    caja_1_nombre.textContent = genero_a_reproducir_f_s[caja_musica_s].nombre;
+    caja_1_artista.textContent = 'artista';
+};
+
+actualizar_inf(musicas_rock, 0);
+audio_reproductor.src = musicas_rock[0].ruta;
+
+// bi bi-pause-fill - bi bi-play-fill
+function play_music(){
+    icono_play_pausa.classList.remove('bi-play-fill');
+    icono_play_pausa.classList.add('bi-pause-fill')
+    audio_reproductor.play();
+};
+
+function pausar_music(){
+    icono_play_pausa.classList.remove('bi-pause-fill');
+    icono_play_pausa.classList.add('bi-play-fill')
+    audio_reproductor.pause();
+};
+
+function play_pause(){
+    if (audio_reproductor.paused) {
+        play_music();
+    } else{
+        pausar_music();
+    };
+};
 
 
 contenedor_mayor.forEach((actual, indice)=>{
@@ -81,6 +127,8 @@ contenedor_mayor.forEach((actual, indice)=>{
             img.src = musicas_rock[indice_rock].portada;
             
             nuevo_div.classList.add('track1');
+            
+            nuevo_div.dataset.indicer = indice_rock;
 
             // nuevo_div.style.backgroundImage = `url('${musicas_rock[indice_rock].portada}')`;
             
@@ -94,6 +142,8 @@ contenedor_mayor.forEach((actual, indice)=>{
 
             img.src = musicas_romantic[indice_romantic].portada;
 
+            nuevo_div.dataset.indicer = indice_romantic;
+
             nuevo_div.classList.add('track1');
             // nuevo_div.style.backgroundColor = colors[indice_romantic];
 
@@ -106,6 +156,8 @@ contenedor_mayor.forEach((actual, indice)=>{
             let img = document.createElement('img');
 
             img.src = musicas_top[indice_top].portada;
+
+            nuevo_div.dataset.indicer = indice_top;
 
             nuevo_div.classList.add('track1');
             // nuevo_div.style.backgroundColor = colors[indice_top];
@@ -165,6 +217,16 @@ function resetStyle(){
 
 // };
 
+// function haz_click(){
+//     caja.addEventListener('click', ()=>{
+//         let genero_que_toca = contenedor.dataset.padre;
+//         let genero_actual = todas_las_musicas[genero_que_toca];
+
+//         audio_reproductor.src = genero_actual[caja.dataset.indicer];
+//         play_music();
+//     });
+// }
+
 function aplicar_estilos(contenedor){
     const sub_cajas_track1 = contenedor.querySelectorAll('.track1');
     
@@ -183,6 +245,7 @@ function aplicar_estilos(contenedor){
     sub_cajas_track1.forEach((caja, indice)=>{
         if (indice === 0) {
             
+            // haz_click();
             caja.style.transform = "scale(1) translatey(0)";
             caja.style.opacity = "1"
             caja.style.zIndex = "30";
@@ -207,8 +270,72 @@ resetStyle();
 
 // !El primer click no va mover la caja
 let contador = [0, 0, 0];
+let max_es = '';
+let estas_en = 0;
+let sub_estas_en = 0;
 // let contador2 = 0;
 // let contador3 = 0;
+
+
+function musica_reproducir_segun_caja(contenedor_actual_f, genero_a_reproducir_f) {
+    let firs_actualizar = contenedor_actual_f.firstElementChild;
+
+    let caja_musica = firs_actualizar.dataset.indicer;
+    audio_reproductor.src = genero_a_reproducir_f[caja_musica].ruta;
+
+    actualizar_inf(genero_a_reproducir_f, caja_musica);
+
+    play_music();
+};
+
+boton_siguiente.addEventListener('click', ()=>{
+
+    let si_se_puede_avazar = todas_las_musicas[estas_en].length - 1;
+
+    console.log(`maximo es: ${si_se_puede_avazar}`);
+    console.log(`sub_estas_en: ${sub_estas_en}`);
+    console.log(`estas en: ${estas_en}`);
+
+    sub_estas_en++
+
+    
+    if (si_se_puede_avazar < sub_estas_en) {
+        estas_en = (estas_en + 1) % todas_las_musicas[estas_en].length;
+        sub_estas_en = 0
+    }
+
+    let genero_music = todas_las_musicas[estas_en];
+    console.log(genero_music);
+    
+
+    actualizar_inf(genero_music, sub_estas_en);
+    audio_reproductor.src = genero_music[sub_estas_en].ruta;
+    play_music();
+});
+
+boton_atras.addEventListener('click', ()=>{
+    sub_estas_en--
+    
+    if (sub_estas_en < 0) {
+        estas_en = (estas_en - 1 + todas_las_musicas.length) % todas_las_musicas.length;
+        sub_estas_en = todas_las_musicas[estas_en].length - 1;
+    }
+
+    let genero_music_r = todas_las_musicas[estas_en];
+    
+    actualizar_inf(genero_music_r, sub_estas_en);
+    audio_reproductor.src = genero_music_r[sub_estas_en].ruta;
+    play_music();
+});
+
+boton_play_puasa.addEventListener('click', ()=>{
+    play_pause();
+
+    if (contador[0] <= 0) {
+        contador[0]++
+    }
+});
+
 
 contenedor_mayor.forEach((contenedor_actual, indice)=>{
     contenedor_actual.addEventListener('click', ()=>{
@@ -220,15 +347,21 @@ contenedor_mayor.forEach((contenedor_actual, indice)=>{
         });
 
         let tracks = contenedor_actual.querySelectorAll('.track1');
-        let cantidad_tracks = tracks.length;
-
 
         // play_list_selec.classList.toggle('play-list-selecion', indice == indice);
 
         const firs = contenedor_actual.firstElementChild;
 
-        if (contador[indice] == 1) {
-    
+        const genero_a_reproducir = todas_las_musicas[indice];
+        // let caja_musica = firs.dataset.indicer;
+
+        // if (contador[indice] > 1) {
+        //     audio_reproductor.src = genero_a_reproducir[caja_musica].ruta;
+        //     play_music();
+        // };
+        
+
+        if (contador[indice] == 1 & tracks.length > 1 ) {
             firs.style.transform = 'translateY(-150%) rotate(-10deg)';
             firs.style.opacity = '0';
     
@@ -236,11 +369,18 @@ contenedor_mayor.forEach((contenedor_actual, indice)=>{
                 if (e.propertyName === 'transform') {
                     contenedor_actual.appendChild(firs);
                     resetStyle(contenedor_actual);
+                    
+                    musica_reproducir_segun_caja(contenedor_actual, genero_a_reproducir);
     
                     firs.removeEventListener('transitionend', handler)
                 }
             });   
         } else {
+            
+            musica_reproducir_segun_caja(contenedor_actual, genero_a_reproducir);
+            // audio_reproductor.src = genero_a_reproducir[caja_musica].ruta;
+            // play_music();
+
             firs.style.transform = 'scale(1.1)'
 
             firs.addEventListener('transitionend', function handler2() {
