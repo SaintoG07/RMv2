@@ -26,6 +26,18 @@ const icono_play_pausa = document.getElementById('icono-play_puasa');
 const boton_atras = document.getElementById('boton-atras');
 const boton_siguiente = document.getElementById('boton-siguiente');
 
+// ?Barra de progreso(input):
+const barra_de_progreso = document.getElementById('barra-de-progreso');
+const tiempo_actual = document.getElementById('tiempo-actual');
+const tiempo_maximo = document.getElementById('tiempo-max');
+
+// ?Barra volumen y boton:
+const volumen_input = document.getElementById('volumen-input');
+const boton_volumen = document.getElementById('boton-volumen');
+const valor_del_volumen = document.getElementById('valor_del_volumen');
+
+
+
 
 // ?Mostrar y ocultar caja desplegable:
 lista_musica_de_todo.addEventListener('click', ()=>{
@@ -116,6 +128,55 @@ function play_pause(){
         pausar_music();
     };
 };
+
+function forma_tiempo(segundos){
+    const min = Math.floor(segundos/60);
+    const seg = Math.floor(segundos%60)
+
+    const minStr = min < 10 ? "0" + min : min;
+    const segStr = seg < 10 ? "0" + seg : seg;
+
+    return `${minStr}:${segStr}`
+};
+
+
+audio_reproductor.addEventListener('loadedmetadata', ()=>{
+    barra_de_progreso.max = audio_reproductor.duration;
+    barra_de_progreso.value = audio_reproductor.currentTime;
+
+    tiempo_maximo.textContent = forma_tiempo(audio_reproductor.duration);
+});
+
+audio_reproductor.addEventListener('timeupdate', ()=>{
+    barra_de_progreso.value = audio_reproductor.currentTime;
+
+    //!137%60 -> 137/60 -> 60 puede entrar 2 veces, entonces 60*2=120 -> 137-120 = 17, cómo 60 puede entrar 2 veces, significa que son 2 minutos completos y resto que sobra, en este caso 17, serian los segundos = 02:17
+    tiempo_actual.textContent = forma_tiempo(audio_reproductor.currentTime);
+});
+
+barra_de_progreso.addEventListener('input', ()=>{
+    audio_reproductor.currentTime = barra_de_progreso.value;
+});
+
+boton_volumen.addEventListener('click', ()=>{
+    volumen_input.classList.toggle('volumen-input-mostrar');
+    valor_del_volumen.classList.toggle('valor_del_volumen-activ');
+    
+});
+
+function volumen_a_decimal() {
+    const volumen_decimal = volumen_input.value / 100;
+    audio_reproductor.volume = volumen_decimal;
+    valor_del_volumen.textContent = volumen_input.value+'%'
+};
+
+// Para que el volumen por defecto comience en 50%:
+volumen_a_decimal();
+
+volumen_input.addEventListener('input', ()=>{
+    volumen_a_decimal();
+    
+});
 
 
 contenedor_mayor.forEach((actual, indice)=>{
@@ -270,7 +331,6 @@ resetStyle();
 
 // !El primer click no va mover la caja
 let contador = [0, 0, 0];
-let max_es = '';
 let estas_en = 0;
 let sub_estas_en = 0;
 // let contador2 = 0;
@@ -291,10 +351,6 @@ function musica_reproducir_segun_caja(contenedor_actual_f, genero_a_reproducir_f
 boton_siguiente.addEventListener('click', ()=>{
 
     let si_se_puede_avazar = todas_las_musicas[estas_en].length - 1;
-
-    console.log(`maximo es: ${si_se_puede_avazar}`);
-    console.log(`sub_estas_en: ${sub_estas_en}`);
-    console.log(`estas en: ${estas_en}`);
 
     sub_estas_en++
 

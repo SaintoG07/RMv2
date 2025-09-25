@@ -89,6 +89,7 @@ p{
 }
 
 #controles{
+    position: relative;
     display: flex;
     justify-content: space-around;
 }
@@ -108,20 +109,26 @@ p{
     transition: scale 1s ease;
 }
 
+/* .boton-p{
+    background-color: transparent;
+} */
+
 .botones:active{
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
-.botones:hover{
+/* .botones:hover{
     scale: 1.1;
-}
+} */
 
-#boton-repetir, 
 #boton-volumen{
-    font-size: 20px;
-    opacity: 0.6;
+    position: relative;
     /* line-height: 1;
     vertical-align: middle; */
+}
+
+#boton-repetir{
+    font-size: 26px;
 }
 
 .barra-y-tiempo{
@@ -137,6 +144,8 @@ p{
 
     background-color: rgb(204, 30, 71);
     border-radius: 10px;
+
+    cursor: pointer;
 }
 
 #barra-de-progreso::-webkit-slider-thumb{
@@ -154,6 +163,81 @@ p{
     transform: scale(1.2);
     box-shadow: 0 0 5px 4px rgba(233, 129, 154, 0.6);
 }
+
+.volumen-input{
+    opacity: 0;
+    visibility: hidden;
+    /* display: none; */
+    position: absolute;
+    appearance: none;
+    transform: rotate(270deg); 
+    transform-origin: bottom right;
+    /* transform: rotate(270deg); */
+    width: 80px;
+    height: 3px;
+
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 7px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+
+
+    bottom: 80px;
+    right: 0;
+    /* clip-path: inset(0 0 0 100%);
+    transition: clip-path 0.4s ease; */
+    margin: 0;
+}
+
+.volumen-input-mostrar{
+    /* display: flex;
+    opacity: 1;
+    cursor: pointer; */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.valor_del_volumen{
+    opacity: 0;
+    /* width: 20px;
+    aspect-ratio: 1/1; */
+    
+    font-size: 12px;
+    position: absolute;
+    pointer-events: none;
+    
+    top: calc(-50%);
+    /* transition: opacity 0.2s ease; */
+}
+
+
+.valor_del_volumen-activ{
+    opacity: 1;
+}
+/* .volumen-input-mostrar:hover, #valor_del_volumen{
+    opacity: 1;
+} */
+
+#volumen-input:hover ~ #boton-volumen #valor_del_volumen {
+    opacity: 1;
+}
+
+#volumen-input::-webkit-slider-thumb{
+    appearance: none;
+    width: 14px;
+    aspect-ratio: 1/1;
+    
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    /* outline: 2px solid rgba(255, 255, 255, 0.6); */
+}
+
+/* .volumen-input::-webkit-slider-runnable-track{
+    background: rgba(255,255,255,0.2);
+} */
 
 .caja-2{
     box-sizing: border-box;
@@ -182,7 +266,10 @@ p{
     color: white;
     background-color: transparent;
     border: none;
-    font-size: 1rem;}
+    font-size: 1rem;
+
+    cursor: pointer;
+}
 
 
 #idioma{

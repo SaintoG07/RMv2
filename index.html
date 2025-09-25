@@ -32,18 +32,20 @@
                 <i class="bi bi-skip-end-fill"></i>
             </button>
             <button class="botones" id="boton-volumen">
+                <span id="valor_del_volumen" class="valor_del_volumen"></span>
                 <i class="bi bi-volume-down-fill"></i>
             </button>
+            <input type="range" id="volumen-input" class="volumen-input">
         </div>
 
-        <audio id="audio_reproductor" value="122">
+        <audio id="audio_reproductor">
             <source src="" type="audio/mp3">
         </audio>
 
         <div class="barra-y-tiempo">
-            <p>00:00</p>
-            <input type="range" id="barra-de-progreso" value="0">
-            <p>03:48</p>
+            <p id="tiempo-actual">00:00</p>
+            <input type="range" id="barra-de-progreso" min="0" max="100" value="50">
+            <p id="tiempo-max">00:00</p>
         </div>
     </div>
 
