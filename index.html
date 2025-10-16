@@ -10,15 +10,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <div class="caja-1">
         <div class="portada-principal-div">
             <img src="" alt="PORTADA" id="portada-principal-img">
         </div>
-        <h2 id="caja-1-nombre">Nombre-canción</h2>
-        <h3 id="caja-1-artista">Artista</h3>
+        <div class="nombre-y-artista">
+            <h2 id="caja-1-nombre">Nombre-canción</h2>
+            <h3 id="caja-1-artista">Artista</h3>
+        </div>
         <div id="controles">
             <button class="botones" id="boton-repetir">
-                <i class="bi bi-repeat"></i>
+                <i class="bi bi-repeat" id="boton-repetir-icono"></i>
                 <!-- <i class="bi bi-repeat-1"></i> -->
             </button>
             <button class="botones" id="boton-atras">
@@ -56,13 +59,31 @@
             <h3>RMv2</h3>
 
             <p id="idioma">EN</p>
-            <button>
-                <i class="bi bi-search"></i>
-            </button>
-            <button>
+
+            
+            <div class="caja-padre-buscar">
+                <button class="buscar-lupa" id="buscar-lupa">
+                    <i class="bi bi-search"></i>
+                </button>
+
+                <div class="caja-buscar" id="caja-buscar">
+                    <h4>Buscar</h4>
+                    <input type="text" placeholder="Escribe aquí" autocomplete="off" class="input_para_buscar" id="input_para_buscar">
+    
+                    <ul class="lista-ul_buscar" id="lista-ul_buscar">
+                        <!-- <li>music1</li>
+                        <li>music2</li>
+                        <li>music3</li> -->
+                        </ul>
+                </div>
+            </div>
+
+            
+            <button class="usuario-boton" id="usuario-boton">
                 <i class="bi bi-person"></i>
+
             </button>
-            <button id="lista-musica-de-todo">
+            <button id="lista-musica-de-todo" class="lista-musica-de-todo">
                 <i class="bi bi-list"></i>
             </button>
         </div>
@@ -75,8 +96,25 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus deserunt neque praesentium rem eos, repellat aut officia inventore in accusantium. Explicabo dicta possimus repellendus cum similique impedit minima eveniet optio?</p>
         </div>
 
+        <div class="caja-padre-usuario">
+            <section>
+                <div class="perfil-usuario"></div>
+                <h2 class="usuario-nombre">Nombre</h2>
+                <h4 class="usuario-gmail">usuario123@gmail.com</h4>
+            </section>
+
+            <div class="caja-padre-div">
+                <div class="prueba-div"></div>
+                <div class="prueba-div"></div>
+            </div>
+
+            <div class="footer-div"></div>
+        </div>
+
         <div class="caja-lista-musica" id="caja-lista-musica">
-            <button id="cerrar-caja-lista-musica"></button>
+            <!-- <button id="cerrar-caja-lista-musica">
+                <i class="bi bi-list" id="icono-lista"></i>
+            </button> -->
 
             <div class="sub-caja-lista-musica">
                 <div class="sub-caja-lista-musica-2">

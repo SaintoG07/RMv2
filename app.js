@@ -4,12 +4,26 @@ const contenedor_mayor = document.querySelectorAll('.caja-de-las-subcajas1')
 // ?Caja mayor de las subcajas, se usará para ver en qué caja se ha hecho click o está la selección:
 const play_list = document.querySelectorAll('.sub-caja-lista .play-list');
 
+//!botones arriba:
+const boton_buscar = document.getElementById('buscar-lupa');
+// ?cosas para buscar:
+const caja_padre_buscar = document.querySelector('.caja-2 .caja-2-opciones-arriba .caja-padre-buscar')
+const caja_buscar = document.getElementById('caja-buscar');
+
+const input_para_buscar = document.getElementById('input_para_buscar');
+const lista_ul_buscar = document.getElementById('lista-ul_buscar');
+
+const usuario_boton = document.getElementById('usuario-boton');
+const usuario_contenido = document.querySelector('.caja-2 .caja-padre-usuario')
 
 // !Caja desplegable, osea la lista de todas las musicas, con su nombre:
 const lista_musica_de_todo = document.getElementById('lista-musica-de-todo');
 const caja_lista_musica = document.getElementById('caja-lista-musica')
-const boton_cerrar_caja_lista_musica = document.getElementById('cerrar-caja-lista-musica');
+// const boton_cerrar_caja_lista_musica = document.getElementById('cerrar-caja-lista-musica');
 const contenedor_ul = document.querySelectorAll('.sub-caja-lista-musica .sub-caja-lista-musica-2');
+
+// ?body:
+const body = document.querySelector('body');
 
 // !Etiqueta audio:
 const audio_reproductor = document.getElementById('audio_reproductor');
@@ -23,6 +37,8 @@ const caja_1_artista = document.getElementById('caja-1-artista');
 const boton_play_puasa = document.getElementById('boton_pausar_play');
 const icono_play_pausa = document.getElementById('icono-play_puasa');
 
+const boton_repetir = document.getElementById('boton-repetir');
+const boton_repetir_icono = document.getElementById('boton-repetir-icono');
 const boton_atras = document.getElementById('boton-atras');
 const boton_siguiente = document.getElementById('boton-siguiente');
 
@@ -37,32 +53,93 @@ const boton_volumen = document.getElementById('boton-volumen');
 const valor_del_volumen = document.getElementById('valor_del_volumen');
 
 
-
-
 // ?Mostrar y ocultar caja desplegable:
-lista_musica_de_todo.addEventListener('click', ()=>{
+lista_musica_de_todo.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    lista_musica_de_todo.classList.add('lista-musica-de-todo-ocultar');
     // caja_lista_musica.style.transform = "translateX(0)";
-    caja_lista_musica.classList.add('caja-lista-musica-mostrar');
-    lista_musica_de_todo.classList.add('oculatar_boton_lista')
+    // lista_musica_de_todo.classList.add('oculatar_boton_lista')
+    if (usuario_contenido.classList.contains('caja-padre-usuario-mostrar')) {
+        usuario_contenido.classList.remove('caja-padre-usuario-mostrar');
+    
+        usuario_contenido.addEventListener('transitionend', function cerrar(){
+            
+            caja_lista_musica.classList.add('caja-lista-musica-mostrar');
+            // if (e.propertyName == 'transform') {
+            //     caja_lista_musica.classList.add('caja-lista-musica-mostrar');
+            // };
+
+            usuario_contenido.removeEventListener('transitionend', cerrar)
+        });
+    } else {
+        caja_lista_musica.classList.add('caja-lista-musica-mostrar');
+    };
 });
 
-boton_cerrar_caja_lista_musica.addEventListener('click', ()=>{
-    caja_lista_musica.classList.remove('caja-lista-musica-mostrar');
-    lista_musica_de_todo.classList.remove('oculatar_boton_lista');
-})
+usuario_boton.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    usuario_boton.classList.add('usuario-boton-ocultar');
+
+    if (caja_lista_musica.classList.contains('caja-lista-musica-mostrar')) {
+        caja_lista_musica.classList.remove('caja-lista-musica-mostrar');
+
+        caja_lista_musica.addEventListener('transitionend', function cerrar_dos(){
+            usuario_contenido.classList.add('caja-padre-usuario-mostrar');
+            // if (e.propertyName == 'transform') {
+            //     usuario_contenido.classList.add('caja-padre-usuario-mostrar');
+            // };
+            caja_lista_musica.removeEventListener('transitionend', cerrar_dos);
+        });
+    } else{
+        usuario_contenido.classList.add('caja-padre-usuario-mostrar');
+    }
+});
+
+document.addEventListener('click', (e)=>{
+    console.log(usuario_contenido.classList.contains('caja-padre-usuario-mostrar'));
+    
+    if (!usuario_contenido.contains(e.target) && usuario_contenido.classList.contains('caja-padre-usuario-mostrar')) {
+        usuario_contenido.classList.remove('caja-padre-usuario-mostrar');
+        usuario_boton.classList.remove('usuario-boton-ocultar');
+    } else if (!caja_lista_musica.contains(e.target) && caja_lista_musica.classList.contains('caja-lista-musica-mostrar')) {
+        lista_musica_de_todo.classList.remove('lista-musica-de-todo-ocultar');
+        caja_lista_musica.classList.remove('caja-lista-musica-mostrar');
+    };
+});
+
+
+// body.addEventListener('click', ()=>{
+//     console.log(usuario_contenido);
+//     if (lista_musica_de_todo.classList.contains('caja-lista-musica-mostrar') || usuario_contenido.classList.contains('caja-padre-usuario-mostrar')) {
+//         caja_lista_musica.classList.toggle('caja-lista-musica-mostrar');
+//         usuario_contenido.classList.toggle('caja-padre-usuario-mostrar');
+//     }
+// });
+// boton_cerrar_caja_lista_musica.addEventListener('click', ()=>{
+//     caja_lista_musica.classList.remove('caja-lista-musica-mostrar');
+//     lista_musica_de_todo.classList.remove('oculatar_boton_lista');
+// })
 
 
 // !Lista de las musicas
 const musicas_rock = [
     {
-        nombre : 'A donde voy',
-        portada : 'img/A donde voy.jpg',
-        ruta : 'music/A dónde voy - Wuicho kun & Azul de Viena.mp3'
+        nombre : 'shadow of the days',
+        portada : 'img/shadow of the days.jpg',
+        ruta : 'music/Shadow Of The Day.mp3',
+        artista : 'Linkin park'
     },
     {
         nombre : 'Desconocido',
         portada : 'img/desconocido.jpg',
-        ruta : 'music/DesconocidoMusic.mp3'
+        ruta : 'music/DesconocidoMusic.mp3',
+        artista : 'unknown'
+    },
+    {
+        nombre : 'shadowborn',
+        portada : 'img/shadowborn.webp',
+        ruta : 'music/SHADOWBORN.mp3',
+        artista : 'unknown'
     }
 ];
 
@@ -70,17 +147,14 @@ const musicas_romantic = [
     {
         nombre : 'Sharks',
         portada : 'img/paris the prince-sharks.jpg',
-        ruta : 'music/Skrahs.mp3'
+        ruta : 'music/Skrahs.mp3',
+        artista : 'PARIS the prince'
     },
     {
-        nombre : 'shadow of the days',
-        portada : 'img/shadow of the days.jpg',
-        ruta : 'music/Shadow Of The Day.mp3'
-    },
-    {
-        nombre : 'shadowborn',
-        portada : 'img/shadowborn.webp',
-        ruta : 'music/SHADOWBORN.mp3'
+        nombre : 'A donde voy',
+        portada : 'img/A donde voy.jpg',
+        ruta : 'music/A dónde voy - Wuicho kun & Azul de Viena.mp3',
+        artista : 'Wuicho kun & Azul de Viena'
     }
 ];
 
@@ -88,7 +162,8 @@ const musicas_top = [
     {
         nombre : 'Windows',
         portada : 'img/Windows.jpg',
-        ruta : 'music/M & S R-Windows.mp3'
+        ruta : 'music/M & S R-Windows.mp3',
+        artista : 'Social Repose'
     }
 ];
 
@@ -97,12 +172,19 @@ const todas_las_musicas = [musicas_rock, musicas_romantic, musicas_top];
 
 const colors = ['red', 'blue', 'green', 'yellow', 'blueviolet', 'orange']
 
+let solo_nombres = [];
+
+todas_las_musicas.forEach((elemento, indice)=>{
+    elemento.forEach((sub_elemento, sub_indice)=>{
+        solo_nombres.push(sub_elemento.nombre)
+    })
+})
 
 // !Funciones para actualizar inf, play-pausa, etc:
 function actualizar_inf(genero_a_reproducir_f_s, caja_musica_s){
     portada_principal_img.src = genero_a_reproducir_f_s[caja_musica_s].portada;
     caja_1_nombre.textContent = genero_a_reproducir_f_s[caja_musica_s].nombre;
-    caja_1_artista.textContent = 'artista';
+    caja_1_artista.textContent = genero_a_reproducir_f_s[caja_musica_s].artista;
 };
 
 actualizar_inf(musicas_rock, 0);
@@ -128,6 +210,7 @@ function play_pause(){
         pausar_music();
     };
 };
+
 
 function forma_tiempo(segundos){
     const min = Math.floor(segundos/60);
@@ -348,25 +431,49 @@ function musica_reproducir_segun_caja(contenedor_actual_f, genero_a_reproducir_f
     play_music();
 };
 
-boton_siguiente.addEventListener('click', ()=>{
+function avanzar_al_siguiente() {
+    // console.log(`genero: ${estas_en}`);
+    // console.log(`Musica: ${sub_estas_en}`);
 
     let si_se_puede_avazar = todas_las_musicas[estas_en].length - 1;
 
     sub_estas_en++
-
     
     if (si_se_puede_avazar < sub_estas_en) {
-        estas_en = (estas_en + 1) % todas_las_musicas[estas_en].length;
+        estas_en = (estas_en + 1) % todas_las_musicas.length;
         sub_estas_en = 0
     }
 
     let genero_music = todas_las_musicas[estas_en];
-    console.log(genero_music);
     
-
     actualizar_inf(genero_music, sub_estas_en);
     audio_reproductor.src = genero_music[sub_estas_en].ruta;
     play_music();
+};
+
+boton_siguiente.addEventListener('click', ()=>{
+    avanzar_al_siguiente();
+});
+
+// bi-repeat-1 : bi-repeat
+let repetir_o_no = false;
+boton_repetir.addEventListener('click', ()=>{
+    repetir_o_no =repetir_o_no == false ? true : false;
+
+    if(repetir_o_no){
+        boton_repetir_icono.classList.remove('bi-repeat');
+        boton_repetir_icono.classList.add('bi-repeat-1');      
+    } else{
+        boton_repetir_icono.classList.remove('bi-repeat-1');
+        boton_repetir_icono.classList.add('bi-repeat');
+    };
+});
+audio_reproductor.addEventListener('ended', ()=>{
+    if (repetir_o_no){
+        play_music();
+    } else{
+        avanzar_al_siguiente();
+    };
 });
 
 boton_atras.addEventListener('click', ()=>{
@@ -390,6 +497,37 @@ boton_play_puasa.addEventListener('click', ()=>{
     if (contador[0] <= 0) {
         contador[0]++
     }
+});
+
+// !boton buscar: 
+boton_buscar.addEventListener('click', ()=>{
+    caja_padre_buscar.classList.toggle('caja-padre-buscar-mostrar');
+    caja_buscar.classList.toggle('caja-buscar-mostrar');
+    
+    if (!caja_padre_buscar.classList.contains('caja-padre-buscar-mostrar')) {
+        caja_buscar.addEventListener('transitionend', function anim(a){
+            if (a.propertyName == 'clip-path') {
+                lista_ul_buscar.innerHTML = '';
+                input_para_buscar.value = '';
+            }
+            
+            caja_buscar.removeEventListener('transitionend', anim);
+        }); 
+    };
+});
+
+// ?input buscar:
+input_para_buscar.addEventListener('input', ()=>{
+    const texto = input_para_buscar.value.trim();
+
+    if (!texto) {
+        lista_ul_buscar.innerHTML = ''
+        return;
+    };
+    
+    const coincidencias = solo_nombres.filter(item => item.toLowerCase().startsWith(texto.toLowerCase()));
+
+    lista_ul_buscar.innerHTML = coincidencias.map(item => `<li>${item}</li>`).join("");
 });
 
 

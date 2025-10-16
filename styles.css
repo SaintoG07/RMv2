@@ -38,6 +38,202 @@ body::after{
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.usuario-boton:active{
+    transform: scale(0.8);
+}
+
+.usuario-boton-ocultar{
+    opacity: 0;
+    display: none;
+}
+
+.caja-buscar{
+    position: absolute;
+    
+    top: 100%;
+    right: 0;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    /* transform: translateY(-100%) scale(0.9); */
+
+    border-radius: 6px 0 6px 6px;
+    pointer-events: none;
+    clip-path: inset(0 0 100% 80%);
+    opacity: 0.8;
+    transition: clip-path 0.4s ease, opacity 0.4s ease;
+    /* transform: scaleY(0.8) scaleX(0.8);
+    transform-origin: top right;
+    transition: transform 0.4s ease, clip-path 0.4s ease, opacity 0.4s ease; */
+    
+    z-index: 500;
+}
+
+.caja-buscar-mostrar{
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    pointer-events: auto;
+    transform: scaleY(1)
+}
+
+/* .buscar-lupa:hover + .caja-buscar{
+    clip-path: inset(0 0 0 0);
+} */
+
+.caja-padre-buscar{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+
+    padding: 10px 0;
+    /* border-radius: 6px 6px 0 0; */
+    /* transition: background-color 0.4s ease; */
+}
+
+.caja-padre-buscar::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 6px 6px 0 0;
+    
+    clip-path: inset(100% 0 0 0);
+    opacity: 0.8;
+    transition: clip-path 0.4s ease, opacity 0.4s ease;
+}
+
+.caja-padre-buscar-mostrar::after{
+    /* border-radius: 6px 6px 0 0; */
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+}
+
+/* .caja-padre-buscar-mostrar{
+    background-color: rgba(255, 255, 255, 0.2);
+} */
+
+/* .caja-padre-buscar:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+} */
+
+.caja-padre-buscar h4{
+    margin: 0;
+    padding: 0 0 5px 0;
+}
+
+.input_para_buscar{
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+
+    padding: 3px;
+}
+
+.input_para_buscar:focus{
+    outline: none;
+    border: none;
+}
+
+.lista-ul_buscar{
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0;
+    padding: 10px 0 0;
+}
+
+.lista-ul_buscar li{
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    width: fit-content;
+    padding: 2px;
+    color: rgba(255, 255, 255, 0.8);
+
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.caja-padre-usuario{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: fit-content;
+    transform: translateX(100%) scale(0.8);
+    opacity: 0;
+
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    pointer-events: none;
+
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+.caja-padre-usuario-mostrar{
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.perfil-usuario{
+    width: 60px;
+    aspect-ratio: 1/1;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.caja-padre-usuario section{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.caja-padre-usuario .usuario-nombre, .usuario-gmail{
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 4px;
+    color: transparent;
+
+    border-radius: 7px;
+}
+.caja-padre-div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.prueba-div{
+    width: 100%;
+    height: 20px;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+}
+
+.footer-div{
+    width: 80%;
+    height: 30px;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+
+    margin-top: auto;
+}
+
 .caja-1{
     box-sizing: border-box;
     display: flex;
@@ -84,8 +280,30 @@ body::after{
 h1, 
 h2, 
 h3,
+h4,
 p{
     margin: 0;
+}
+
+#caja-1-nombre{
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#caja-1-artista{
+    /* font-size: 1rem; */
+    font-style: italic;
+    font-weight: normal;
+}
+
+#caja-1-nombre, #caja-1-artista{
+    text-align: center;
+}
+
+.nombre-y-artista{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 #controles{
@@ -256,9 +474,11 @@ p{
 /* !Caja 2: */
 .caja-2-opciones-arriba{
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     gap: 20px;
+
 }
 
 .caja-2-opciones-arriba button{
@@ -277,6 +497,10 @@ p{
     font-weight: bold;
 }
 
+.buscar-lupa:active{
+    transform: scale(1.1);
+}
+
 .cosas-sobre-el-web{
     display: flex;
     flex-direction: column;
@@ -292,7 +516,21 @@ p{
     display: inline-block;
     width: 50px;
     height: 20px;
+
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 20px;
 }
+
+#cerrar-caja-lista-musica:active{
+    transform: scale(1.1);
+}
+
+/* #icono-lista:active{
+    transform: scale(1.1);
+} */
 
 .caja-lista-musica{
     position: fixed;
@@ -328,6 +566,8 @@ p{
     transform: translateX(0) scale(1);
     opacity: 1;
     pointer-events: auto;
+
+    z-index: 200;
 }
 
 /* .caja-lista-musica-mostrar{
@@ -337,14 +577,20 @@ p{
 /* .caja-lista-musica{
     clip-path: inset(0 0 0 0);
 } */
-#lista-musica-de-todo{
+.lista-musica-de-todo{
     cursor: pointer;
-    transition: translatey 0.2s ease;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+
+    z-index: 200;
 }
 
-#lista-musica-de-todo:active{
-    transform: scale(1.2);
+.lista-musica-de-todo:active{
+    transform: scale(0.8);
+}
+
+.lista-musica-de-todo-ocultar{
+    opacity: 0;
+    display: none;
 }
 
 .oculatar_boton_lista{
