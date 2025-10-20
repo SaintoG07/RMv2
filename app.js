@@ -96,7 +96,7 @@ usuario_boton.addEventListener('click', (e)=>{
 });
 
 document.addEventListener('click', (e)=>{
-    console.log(usuario_contenido.classList.contains('caja-padre-usuario-mostrar'));
+    // console.log(usuario_contenido.classList.contains('caja-padre-usuario-mostrar'));
     
     if (!usuario_contenido.contains(e.target) && usuario_contenido.classList.contains('caja-padre-usuario-mostrar')) {
         usuario_contenido.classList.remove('caja-padre-usuario-mostrar');
