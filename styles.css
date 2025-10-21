@@ -21,7 +21,7 @@ body{
     padding: 80px;
     background-color: #333;
     background-image: url(img/anime-night.jpg);
-    backdrop-filter: blur(5px);
+
     color: white;
 }
 
@@ -37,7 +37,7 @@ body::after{
     right: 0;
     bottom: 0;
     left: 0;
-
+    backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -177,7 +177,7 @@ body::after{
     backdrop-filter: blur(5px);
     padding: 20px;
 
-    z-index: 1000;
+    z-index: 500;
 }
 
 .caja-padre-usuario-mostrar{
@@ -570,7 +570,7 @@ p{
     opacity: 1;
     pointer-events: auto;
 
-    z-index: 200;
+    z-index: 500;
 }
 
 /* .caja-lista-musica-mostrar{
@@ -662,6 +662,8 @@ p{
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    z-index: 400;
 }
 
 .sub-caja-lista{
@@ -754,10 +756,11 @@ p{
     body{
         flex-direction: column;
         gap: 40px;
-        padding: 50px 40px 40px 40px;
+        padding: 70px 40px 40px 40px;
         height: 100%;
 
         align-items: center;
+        background-size: cover;
     }
 
     body::after{
@@ -773,7 +776,7 @@ p{
     }
 
     .caja-1{
-        width: 80%;
+        width: 100%;
     }
 
     .titulo-caja-2, 
@@ -788,34 +791,78 @@ p{
 
     .caja-lista{
         gap: 20px;
-        text-align: center;
     }
 
     .miplay-list-p{
-        font-size: 1.2rem;
+        font-size: 1rem;
         /* font-weight: bold; */
         /* background-color: rgba(255, 255, 255, 0.1);
         border-radius: 10px; */
     }
 
     .caja-2-opciones-arriba {
-        position: absolute;
+        position: fixed;
         
-        margin-left: 50%;
-        transform: translateX(-50%);
-        top: 5px;
+        /* margin-left: 50%;
+        transform: translateX(-50%); */
+        top: 0;
         left: 0;
         right: 0;
+
+        padding: 8px 40px;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+    }
+
+    .caja-lista-musica{
+        bottom: initial;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+
+        border-radius: 0 0 0 10px;
+
+        z-index: 500;
+    }
+    
+    .caja-buscar{
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+    }
+
+    .caja-padre-buscar::after{
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+    }
+
+    .caja-padre-usuario{
+        bottom: initial;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+
+        border-radius: 0 0 0 10px;
+    }
+
+    .input_para_buscar{
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 7px;
+    }
+
+    /* .input_para_buscar::placeholder{
+        color: rgba(0, 0, 0, 0.6);
+    } */
+
+    .footer-div{
+        margin-top: 100%;
     }
 
     .play-list{
-        width: 180px;
-        height: 180px;
+        width: 150px;
+        height: 150px;
     }
 
     .sub-caja-lista{
         flex-wrap: wrap;
-        justify-content: space-around;
+        /* justify-content: space-around; */
         
     }
 
