@@ -65,6 +65,7 @@ lista_musica_de_todo.addEventListener('click', (e)=>{
         usuario_contenido.addEventListener('transitionend', function cerrar(){
             
             caja_lista_musica.classList.add('caja-lista-musica-mostrar');
+            usuario_boton.classList.remove('usuario-boton-ocultar');
             // if (e.propertyName == 'transform') {
             //     caja_lista_musica.classList.add('caja-lista-musica-mostrar');
             // };
@@ -85,6 +86,7 @@ usuario_boton.addEventListener('click', (e)=>{
 
         caja_lista_musica.addEventListener('transitionend', function cerrar_dos(){
             usuario_contenido.classList.add('caja-padre-usuario-mostrar');
+            lista_musica_de_todo.classList.remove('lista-musica-de-todo-ocultar');
             // if (e.propertyName == 'transform') {
             //     usuario_contenido.classList.add('caja-padre-usuario-mostrar');
             // };

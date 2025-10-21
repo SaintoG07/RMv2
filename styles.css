@@ -816,8 +816,9 @@ p{
 
     .caja-lista-musica{
         bottom: initial;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(10px);
+        top: 56.4px;
 
         border-radius: 0 0 0 10px;
 
@@ -825,25 +826,26 @@ p{
     }
     
     .caja-buscar{
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(116, 116, 116, 0.5);
         backdrop-filter: blur(10px);
     }
 
     .caja-padre-buscar::after{
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(116, 116, 116, 0.5);
         backdrop-filter: blur(10px);
     }
 
     .caja-padre-usuario{
+        top: 56.4px;
         bottom: initial;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(10px);
 
         border-radius: 0 0 0 10px;
     }
 
     .input_para_buscar{
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.6);
         border-radius: 7px;
     }
 
@@ -856,7 +858,7 @@ p{
     }
 
     .play-list{
-        width: 150px;
+        width: 120px;
         height: 150px;
     }
 
