@@ -396,11 +396,11 @@ function aplicar_estilos(contenedor){
             caja.style.opacity = "1"
             caja.style.zIndex = "30";
         } else if (indice === 1) {
-            caja.style.transform = "scale(0.95) translatey(10px)";
+            caja.style.transform = "scale(0.95) translatey(8px)";
             caja.style.opacity = "1";
             caja.style.zIndex = "20";
         } else if (indice === 2) {
-            caja.style.transform = "scale(0.9) translatey(20px)";
+            caja.style.transform = "scale(0.9) translatey(16px)";
             caja.style.opacity = "1";
             caja.style.zIndex = "10";
         } else {

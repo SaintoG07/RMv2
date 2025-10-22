@@ -779,6 +779,19 @@ p{
         width: 100%;
     }
 
+    #caja-1-nombre{
+        font-size: 1.5rem;
+    }
+
+    #caja-1-artista{
+        font-size: 1rem;
+    }
+
+    #tiempo-actual, 
+    #tiempo-max{
+        font-size: 0.8rem;
+    }
+
     .titulo-caja-2, 
     .parrafo-caja-2{
         display: none;
@@ -791,6 +804,14 @@ p{
 
     .caja-lista{
         gap: 20px;
+    }
+
+    .botones{
+        font-size: 1.5rem;
+    }
+
+    #boton-repetir{
+        font-size: 22px;
     }
 
     .miplay-list-p{
@@ -817,7 +838,7 @@ p{
     .caja-lista-musica{
         bottom: initial;
         background-color: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(5px);
         top: 56.4px;
 
         border-radius: 0 0 0 10px;
@@ -839,7 +860,7 @@ p{
         top: 56.4px;
         bottom: initial;
         background-color: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(5px);
 
         border-radius: 0 0 0 10px;
     }
@@ -855,6 +876,23 @@ p{
 
     .footer-div{
         margin-top: 100%;
+    }
+
+    /* .play-list{
+        display: flex;
+        gap: 20px;
+    } */
+
+    .miplay-list-p{
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 6px;
+        border-radius: 6px;
+
+        /* box-shadow: 0 0 6px 4px rgba(0, 0, 0, 0.1) inset; */
+    }
+
+    .play-list p{
+        font-size: 0.8rem;
     }
 
     .play-list{
